@@ -1,6 +1,22 @@
 "use client";
 
-import { Home, LockIcon, X } from "lucide-react";
+import {
+  AlertCircle,
+  AlertOctagon,
+  AlertTriangle,
+  Briefcase,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Layers3,
+  LockIcon,
+  Search,
+  Settings,
+  ShieldAlert,
+  User,
+  Users,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import SideBarLink from "./SideBarLink";
@@ -56,7 +72,60 @@ const Sidebar = () => {
         {/* NAVBAR LINKS */}
         <nav className="z-10 w-full">
           <SideBarLink icon={Home} label="Home" href="/" />
+          <SideBarLink icon={Briefcase} label="Timeline" href="/timeline" />
+          <SideBarLink icon={Search} label="Search" href="/search" />
+          <SideBarLink icon={Settings} label="Settings" href="/settings" />
+          <SideBarLink icon={User} label="Users" href="/user" />
+          <SideBarLink icon={Users} label="Teams" href="/teams" />
         </nav>
+        <button
+          onClick={() => setShowProjects((prev) => !prev)}
+          className="flex w-full items-center justify-between px-8 py-3 text-gray-500"
+        >
+          <span className="">Projects</span>
+          {showProjects ? (
+            <ChevronUp className="h-5 w-5" />
+          ) : (
+            <ChevronDown className="h-5 w-5" />
+          )}
+        </button>
+
+        <button
+          onClick={() => setShowPriority((prev) => !prev)}
+          className="flex w-full items-center justify-between px-8 py-3 text-gray-500"
+        >
+          <span className="">Priority</span>
+          {showPriority ? (
+            <ChevronUp className="h-5 w-5" />
+          ) : (
+            <ChevronDown className="h-5 w-5" />
+          )}
+        </button>
+        {showPriority && (
+          <>
+            <SideBarLink
+              icon={AlertCircle}
+              label="Urgent"
+              href="/priority/urgent"
+            />
+            <SideBarLink
+              icon={ShieldAlert}
+              label="High"
+              href="/priority/high"
+            />
+            <SideBarLink
+              icon={AlertTriangle}
+              label="Medium"
+              href="/priority/medium"
+            />
+            <SideBarLink icon={AlertOctagon} label="Low" href="/priority/low" />
+            <SideBarLink
+              icon={Layers3}
+              label="Backlog"
+              href="/priority/backlog"
+            />
+          </>
+        )}
       </div>
     </div>
   );
