@@ -1,15 +1,25 @@
 "use client";
-import { LockIcon } from "lucide-react";
+
+import { Home, LockIcon, X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import SideBarLink from "./SideBarLink";
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import { setIsSidebarCollapsed } from "@/app/state";
 
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
 
+  const dispatch = useAppDispatch();
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed,
+  );
+  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
   const sideBarClassName = `fixed flex flex-col h-[100%] justify-between shadow-xl 
     transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white
-    w-64`;
+    ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}`;
 
   return (
     <div className={sideBarClassName}>
@@ -19,6 +29,16 @@ const Sidebar = () => {
           <div className="text-xl font-bold text-gray-800 dark:text-white">
             Projex
           </div>
+          {isSidebarCollapsed ? null : (
+            <button
+              className="py-3"
+              onClick={() =>
+                dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))
+              }
+            >
+              <X className="h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white" />
+            </button>
+          )}
         </div>
         {/* TEAM */}
         <div className="flex items-center gap-5 border-y-[1.5px] border-gray-200 px-8 py-4 dark:border-gray-700">
@@ -34,6 +54,9 @@ const Sidebar = () => {
           </div>
         </div>
         {/* NAVBAR LINKS */}
+        <nav className="z-10 w-full">
+          <SideBarLink icon={Home} label="Home" href="/" />
+        </nav>
       </div>
     </div>
   );
