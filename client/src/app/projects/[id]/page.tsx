@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import ProjectHeader from "@/app/projects/ProjectHeader";
+import BoardView from "../BoardView";
+
 type Props = {
   params: { id: string };
 };
@@ -9,14 +11,14 @@ type Props = {
 const Project = ({ params }: Props) => {
   const { id } = params;
   const [activeTab, setActiveTab] = useState("Board");
-  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
+  const [isIsModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
   return (
     <div>
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {/* {activeTab === "Board" && (
-        <Board />
-    )} */}
+      {activeTab === "Board" && (
+        <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
     </div>
   );
 };
