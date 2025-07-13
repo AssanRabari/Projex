@@ -2,7 +2,7 @@ import { useGetTasksQuery, useUpdateTaskStatusMutation } from "@/app/state/api";
 import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import TaskColumn from "./TaskColumn";
+import TaskColumn from "../../../components/BoardView/TaskColumn";
 
 type BoardProps = {
   id: string;

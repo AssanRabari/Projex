@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   name: string;
   buttonComponent?: any;
-  isSmallText: boolean;
+  isSmallText?: boolean;
 };
 
 const Header = ({ name, buttonComponent, isSmallText = false }: Props) => {
