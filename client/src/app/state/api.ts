@@ -68,7 +68,7 @@ export const api = createApi({
     createProject: build.mutation<Project, Partial<Project>>({
       query: (project) => ({
         url: "projects",
-        methos: "POST",
+        method: "POST",
         body: project,
       }),
       invalidatesTags: ["Projects"],
