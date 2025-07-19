@@ -20,8 +20,8 @@ export enum Priority {
   High = "High",
   Medium = "Medium",
   Low = "Low",
+  Backlog = "Backlog",
 }
-
 export interface User {
   userId: string;
   username: string;
@@ -83,7 +83,7 @@ export const api = createApi({
     createTasks: build.mutation<Task, Partial<Task>>({
       query: (task) => ({
         url: "tasks",
-        methos: "POST",
+        method: "POST",
         body: task,
       }),
       invalidatesTags: ["Tasks"],
@@ -105,5 +105,6 @@ export const {
   useGetProjectsQuery,
   useCreateProjectMutation,
   useGetTasksQuery,
+  useCreateTasksMutation,
   useUpdateTaskStatusMutation,
 } = api;
