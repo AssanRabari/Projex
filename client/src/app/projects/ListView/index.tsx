@@ -1,4 +1,4 @@
-import { Task, useGetTasksQuery } from "@/app/state/api";
+import { Task, useGetTasksQuery } from "@/state/api";
 import Header from "@/components/Header";
 import TaskCard from "@/components/TaskCard";
 import React from "react";

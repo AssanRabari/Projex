@@ -1,7 +1,7 @@
 import Modal from "@/components/Modal";
 import React, { useState } from "react";
 import { formatISO } from "date-fns";
-import { Priority, Status, useCreateTasksMutation } from "@/app/state/api";
+import { Priority, Status, useCreateTasksMutation } from "@/state/api";
 
 type Props = {
   isOpen: boolean;

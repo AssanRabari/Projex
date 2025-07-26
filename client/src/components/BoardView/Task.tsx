@@ -1,4 +1,4 @@
-import { Task as TaskType } from "@/app/state/api";
+import { Task as TaskType } from "@/state/api";
 import { format } from "date-fns";
 import { EllipsisVertical, MessageSquareMore } from "lucide-react";
 import Image from "next/image";

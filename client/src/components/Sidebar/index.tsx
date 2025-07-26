@@ -21,8 +21,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import SideBarLink from "./SideBarLink";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
-import { setIsSidebarCollapsed } from "@/app/state";
-import { useGetProjectsQuery } from "@/app/state/api";
+import { setIsSidebarCollapsed } from "@/state";
+import { useGetProjectsQuery } from "@/state/api";
 
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);

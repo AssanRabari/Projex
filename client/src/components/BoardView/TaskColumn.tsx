@@ -1,6 +1,6 @@
 import { EllipsisVertical, Plus } from "lucide-react";
 import { useDrop } from "react-dnd";
-import { Task as TaskType } from "@/app/state/api";
+import { Task as TaskType } from "@/state/api";
 import Task from "./Task";
 
 type TaskColumnProps = {

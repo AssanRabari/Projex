@@ -3,7 +3,7 @@ import { DisplayOption, Gantt, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css"
 
 import { useAppSelector } from "@/app/redux";
-import { useGetTasksQuery } from "@/app/state/api";
+import { useGetTasksQuery } from "@/state/api";
 
 type TimelineProps = {
   id: string;

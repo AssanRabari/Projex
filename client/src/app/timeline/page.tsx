@@ -5,7 +5,7 @@ import { DisplayOption, Gantt, ViewMode } from "gantt-task-react";
 import "gantt-task-react/dist/index.css";
 
 import { useAppSelector } from "@/app/redux";
-import { useGetProjectsQuery } from "@/app/state/api";
+import { useGetProjectsQuery } from "@/state/api";
 import Header from "@/components/Header";
 
 type TaskTypeItems = "task" | "milestone" | "project";
