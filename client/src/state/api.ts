@@ -1,43 +1,14 @@
+import {
+  Attachment,
+  Priority,
+  Project,
+  SearchResults,
+  Status,
+  Team,
+  User,
+} from "@/types/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export interface Project {
-  id: number;
-  name: string;
-  description?: string;
-  startDate?: string;
-  endDate?: string;
-}
-
-export enum Status {
-  toDo = "To Do",
-  workInProgress = "Work In Progress",
-  UnderReview = "Under Review",
-  Completed = "Completed",
-}
-
-export enum Priority {
-  Urgent = "Urgent",
-  High = "High",
-  Medium = "Medium",
-  Low = "Low",
-  Backlog = "Backlog",
-}
-export interface User {
-  userId: string;
-  username: string;
-  email: string;
-  profilePictureUrl?: string;
-  cognitoId?: string;
-  teamId: string;
-}
-
-export interface Attachment {
-  id: number;
-  fileURL: string;
-  fileName: string;
-  taskId: number;
-  uploadedById: number;
-}
 export interface Task {
   id: number;
   title: string;
@@ -55,19 +26,6 @@ export interface Task {
   assignee?: User;
   comments: Comment[];
   attachments?: Attachment[];
-}
-
-export interface SearchResults {
-  tasks?: Task[];
-  projects?: Project[];
-  users?: User[];
-}
-
-export interface Team {
-  teamId: number;
-  teamName: string;
-  productOwnerUserId?: number;
-  projectManagerUserId?: number;
 }
 
 export const api = createApi({

@@ -7,6 +7,7 @@ import ListView from "../ListView";
 import Timeline from "../TimelineView";
 import Table from "../TableView";
 import ModalNewTask from "@/components/ModalNewTask";
+import { PROJECT_TABS } from "@/lib/utils";
 type Props = {
   params: { id: string };
 };
@@ -24,16 +25,16 @@ const Project = ({ params }: Props) => {
         id={id}
       />
       <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === "Board" && (
+      {activeTab === PROJECT_TABS.BOARD && (
         <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      {activeTab === "List" && (
+      {activeTab === PROJECT_TABS.LIST && (
         <ListView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      {activeTab === "Timeline" && (
+      {activeTab === PROJECT_TABS.TIMELINE && (
         <Timeline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
-      {activeTab === "Table" && (
+      {activeTab === PROJECT_TABS.TABLE && (
         <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
       )}
     </div>

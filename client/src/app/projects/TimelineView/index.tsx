@@ -1,16 +1,16 @@
 import React, { useMemo, useState } from "react";
 import { DisplayOption, Gantt, ViewMode } from "gantt-task-react";
-import "gantt-task-react/dist/index.css"
+import "gantt-task-react/dist/index.css";
 
 import { useAppSelector } from "@/app/redux";
 import { useGetTasksQuery } from "@/state/api";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import { TaskTypeItems } from "@/types/types";
 
 type TimelineProps = {
   id: string;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 };
-
-type TaskTypeItems = "task" | "milestone" | "project";
 
 const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
   const [displayOptions, setDisplayOptions] = useState<DisplayOption>({
@@ -47,7 +47,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen }: TimelineProps) => {
     }));
   };
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <div>An error occured while fetching tasks</div>;
 
   return (

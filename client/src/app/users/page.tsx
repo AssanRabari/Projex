@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import { useGetUsersQuery } from "../../state/api";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 const CustomToolbar = () => (
   <GridToolbarContainer className="toolbar flex gap-2">
@@ -48,7 +49,7 @@ const Users = () => {
   const { data: users, isLoading, isError } = useGetUsersQuery();
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError || !users) return <div>Error fetching users</div>;
 
   return (

@@ -1,15 +1,9 @@
 "use client";
 
 import React from "react";
-import {
-  Priority,
-  Project,
-  Task,
-  useGetProjectsQuery,
-  useGetTasksQuery,
-} from "../../state/api";
+import { Task, useGetProjectsQuery, useGetTasksQuery } from "../../state/api";
 import { useAppSelector } from "../redux";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Header from "@/components/Header";
 import {
   Bar,
@@ -24,16 +18,18 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
+import {
+  dataGridClassNames,
+  dataGridSxStyles,
+  COLORS,
+  TASK_COLUMNS,
+  DARK_MODE_COLORS,
+  NORMAL_COLORS,
+  PROJECT_STATUS,
+} from "@/lib/utils";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import { Priority, Project } from "@/types/types";
 
-const taskColumns: GridColDef[] = [
-  { field: "title", headerName: "Title", width: 200 },
-  { field: "status", headerName: "Status", width: 150 },
-  { field: "priority", headerName: "Priority", width: 150 },
-  { field: "dueDate", headerName: "Due Date", width: 150 },
-];
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const HomePage = () => {
   const {
     data: tasks,
@@ -45,7 +41,7 @@ const HomePage = () => {
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
-  if (tasksLoading || isProjectsLoading) return <div>Loading..</div>;
+  if (tasksLoading || isProjectsLoading) return <LoadingSpinner />;
   if (tasksError || !tasks || !projects) return <div>Error fetching data</div>;
 
   const priorityCount = tasks.reduce(
@@ -64,7 +60,9 @@ const HomePage = () => {
 
   const statusCount = projects.reduce(
     (acc: Record<string, number>, project: Project) => {
-      const status = project?.endDate ? "Completed" : "Active";
+      const status = project?.endDate
+        ? PROJECT_STATUS.Completed
+        : PROJECT_STATUS.Active;
       acc[status] = (acc[status] || 0) + 1;
       return acc;
     },
@@ -76,19 +74,7 @@ const HomePage = () => {
     count: statusCount[key],
   }));
 
-  const chartColors = isDarkMode
-    ? {
-        bar: "#8884d8",
-        barGrid: "#303030",
-        pieFill: "#4A90E2",
-        text: "#FFFFFF",
-      }
-    : {
-        bar: "#8884d8",
-        barGrid: "#E0E0E0",
-        pieFill: "#82ca9d",
-        text: "#000000",
-      };
+  const chartColors = isDarkMode ? DARK_MODE_COLORS : NORMAL_COLORS;
 
   return (
     <div className="container h-full w-[100%] bg-gray-100 bg-transparent p-8">
@@ -143,7 +129,7 @@ const HomePage = () => {
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
               rows={tasks}
-              columns={taskColumns}
+              columns={TASK_COLUMNS}
               checkboxSelection
               loading={tasksLoading}
               getRowClassName={() => "data-grid-row"}

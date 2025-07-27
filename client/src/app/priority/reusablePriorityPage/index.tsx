@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import ModalNewTask from "@/components/ModalNewTask";
 import TaskCard from "@/components/TaskCard";
 import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
-import { Priority, Task, useGetUserTasksQuery } from "@/state/api";
+import { Task, useGetUserTasksQuery } from "@/state/api";
+import { Priority } from "@/types/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React, { useState } from "react";
 

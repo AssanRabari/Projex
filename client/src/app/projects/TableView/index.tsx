@@ -4,6 +4,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import Header from "@/components/Header";
 import React from "react";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 type TableViewProps = {
   id: string;
@@ -73,7 +74,7 @@ const TableView = ({ id, setIsModalNewTaskOpen }: TableViewProps) => {
     error,
   } = useGetTasksQuery({ projectId: Number(id) });
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <div>An error occured while fetching tasks</div>;
 
   return (

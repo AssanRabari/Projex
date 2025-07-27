@@ -1,7 +1,9 @@
 import Modal from "@/components/Modal";
 import React, { useState } from "react";
 import { formatISO } from "date-fns";
-import { Priority, Status, useCreateTasksMutation } from "@/state/api";
+import { useCreateTasksMutation } from "@/state/api";
+import { inputStyles, selectStyles } from "@/lib/utils";
+import { Priority, Status } from "@/types/types";
 
 type Props = {
   isOpen: boolean;
@@ -49,12 +51,6 @@ const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
   const isFormValid = () => {
     return title && authorUserId && (id !== null || projectId);
   };
-
-  const selectStyles =
-    "mb-4 block w-full rounded border border-gray-300 px-3 py-2 dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none";
-
-  const inputStyles =
-    "w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none";
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} name="Create New Task">

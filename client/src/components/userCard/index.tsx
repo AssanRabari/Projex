@@ -1,4 +1,4 @@
-import { User } from "@/state/api";
+import { User } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 

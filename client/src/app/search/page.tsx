@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import TaskCard from "@/components/TaskCard";
 import ProjectCard from "@/components/ProjectCard";
 import UserCard from "@/components/userCard";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +42,7 @@ const Search = () => {
         />
       </div>
       <div className="p-5">
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <LoadingSpinner /> }
         {isError && <p>Error occurred while fetching search results.</p>}
         {!isLoading && !isError && searchResults && searchTerm && (
           <div>

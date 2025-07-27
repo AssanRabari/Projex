@@ -2,6 +2,7 @@ import { Task, useGetTasksQuery } from "@/state/api";
 import Header from "@/components/Header";
 import TaskCard from "@/components/TaskCard";
 import React from "react";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 
 type ListViewProps = {
   id: string;
@@ -15,8 +16,9 @@ const ListView = ({ id, setIsModalNewTaskOpen }: ListViewProps) => {
     error,
   } = useGetTasksQuery({ projectId: Number(id) });
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <div>An error occured while fetching tasks</div>;
+  
   return (
     <div className="px-4 pb-8 xl:px-6">
       <div className="pt-5">

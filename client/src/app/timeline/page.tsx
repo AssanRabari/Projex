@@ -7,8 +7,8 @@ import "gantt-task-react/dist/index.css";
 import { useAppSelector } from "@/app/redux";
 import { useGetProjectsQuery } from "@/state/api";
 import Header from "@/components/Header";
-
-type TaskTypeItems = "task" | "milestone" | "project";
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import { TaskTypeItems } from "@/types/types";
 
 const Timeline = () => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
@@ -41,7 +41,7 @@ const Timeline = () => {
     }));
   };
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError || !projects)
     return <div>An error occured while fetching projects</div>;
 

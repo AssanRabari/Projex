@@ -1,3 +1,4 @@
+import { TASK_PRIORITY } from "@/lib/utils";
 import { Task as TaskType } from "@/state/api";
 import { format } from "date-fns";
 import { EllipsisVertical, MessageSquareMore } from "lucide-react";
@@ -31,13 +32,13 @@ const Task = ({ task }: TaskProps) => {
   const PriorityTag = ({ priority }: { priority: TaskType["priority"] }) => (
     <div
       className={`rounded-full px-2 py-1 text-xs font-semibold ${
-        priority === "Urgent"
+        priority === TASK_PRIORITY.URGENT
           ? "bg-red-200 text-red-700"
-          : priority === "High"
+          : priority === TASK_PRIORITY.HIGH
             ? "bg-yellow-200 text-yellow-700"
-            : priority === "Medium"
+            : priority === TASK_PRIORITY.MEDIUM
               ? "bg-green-200 text-green-700"
-              : priority === "Low"
+              : priority === TASK_PRIORITY.LOW
                 ? "bg-blue-200 text-blue-700"
                 : "bg-gray-200 text-gray-700"
       }`}

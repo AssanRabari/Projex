@@ -10,7 +10,11 @@ import {
   GridToolbarExport,
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
-import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
+import {
+  dataGridClassNames,
+  dataGridSxStyles,
+  TEAMS_COLUMNS,
+} from "@/lib/utils";
 import { useGetTeamsQuery } from "../../state/api";
 
 const CustomToolbar = () => (
@@ -19,17 +23,6 @@ const CustomToolbar = () => (
     <GridToolbarExport />
   </GridToolbarContainer>
 );
-
-const columns: GridColDef[] = [
-  { field: "id", headerName: "Team ID", width: 100 },
-  { field: "teamName", headerName: "Team Name", width: 200 },
-  { field: "productOwnerUserName", headerName: "Product Owner", width: 200 },
-  {
-    field: "projectManagerUserName",
-    headerName: "Project Manager",
-    width: 200,
-  },
-];
 
 const Teams = () => {
   const { data: teams, isLoading, isError } = useGetTeamsQuery();
@@ -44,7 +37,7 @@ const Teams = () => {
       <div style={{ height: 650, width: "100%" }}>
         <DataGrid
           rows={teams || []}
-          columns={columns}
+          columns={TEAMS_COLUMNS}
           pagination
           slots={{
             toolbar: CustomToolbar,
